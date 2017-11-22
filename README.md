@@ -9,19 +9,15 @@ There are two experiments in the paper, i.e. visual tracking, human activity rec
 
 You may find instructions:
 
-Tracking:
+Tracking:      
 https://github.com/wang-chen/KCC/blob/master/tracking/README.md
 
 
 If you find this repo is useful for your projects, please cite it as:
 
-@article{wang2017kernel,
-
-  title={Kernel Cross-Correlator},
-  
-  author={Wang, Chen and Zhang, Le and Xie, Lihua and Yuan, Junsong},
-  
-  journal={arXiv preprint arXiv:1709.05936},
-  
-  year={2017}
-}
+    @article{wang2017kernel,
+      title={Kernel Cross-Correlator},
+      author={Wang, Chen and Zhang, Le and Xie, Lihua and Yuan, Junsong},
+      journal={arXiv preprint arXiv:1709.05936},
+      year={2017}
+    }
