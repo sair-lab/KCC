@@ -1,6 +1,6 @@
 # Visual Tracking Using Kernel Cross-Correlator (KCC)
 
-This tracker can be inserted into the tracker benchmark directly:
+This tracker can be inserted into the tracker benchmark (MATLAB version) directly:
 
     https://sites.google.com/site/trackerbenchmark/benchmarks/v10
 
