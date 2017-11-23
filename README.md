@@ -7,13 +7,17 @@ Chen Wang, Le Zhang, Lihua Xie, Junsong Yuan, Kernel Cross-Correlator, In AAAI C
 There are two experiments in the paper, i.e. visual tracking, human activity recognition using wearable devices, which are contained in the independent folders, respectively.
 
 
-You may find instructions:
+You may find instructions to run the codes for visual tracking:
+    
+    https://github.com/wang-chen/KCC/blob/master/tracking/README.md
 
-Tracking:      
-https://github.com/wang-chen/KCC/blob/master/tracking/README.md
+
+You may find instructions to run the codes for human activity recognition using wearable devices:
+    
+    https://github.com/wang-chen/KCC/blob/master/recognition/README.md
 
 
-If you find this repo is useful for your projects, please cite it as:
+If you find this repo is useful for your projects, you may cite it as:
 
     @article{wang2017kernel,
       title={Kernel Cross-Correlator},
