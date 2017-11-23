@@ -18,10 +18,10 @@ You may find instructions to run the codes for human activity recognition using 
 
 
 If you find this repo is useful for your projects, you may cite it as:
-
-    @article{wang2017kernel,
-      title={Kernel Cross-Correlator},
+    
+    @inproceedings{wang2017kernel,
+      title={A Diversified Generative Latent Variable Model for WiFi-SLAM.},
       author={Wang, Chen and Zhang, Le and Xie, Lihua and Yuan, Junsong},
-      journal={arXiv preprint arXiv:1709.05936},
-      year={2017}
-    }
+      booktitle={AAAI},
+      year={2018}
+     }
