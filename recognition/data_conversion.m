@@ -3,6 +3,29 @@ clear; clc
 % 
 folder = './WARD1.0/';
 addpath('./natsortfiles/')
+
+if ~(7==exist(folder,'dir'))
+    url = 'https://people.eecs.berkeley.edu/~yang/software/WAR/WARD1.zip';
+    filename = 'WARD1.zip';
+    disp('Downloading database...')
+    websave(filename,url);
+    disp('Extracting files...')
+    try
+        unzip(filename, '.');
+    catch err
+        disp('Unable to upzip, you may need to download/unzip the database to currently folder manually via link:')
+        disp(url)
+        return
+    end
+    disp('Extracted.')
+end
+
+if (7==exist(folder,'dir'))
+    disp('Data Conversion...')
+else
+    return
+end
+
 files = dir(folder);
 fileIndex = find([files.isdir]);
 fileIndex = fileIndex(3:end); 
@@ -38,4 +61,5 @@ for i = 1:length(files)
 end 
 
 save('data.mat', 'data');
+disp('Done. Saved to data.mat')
 clear

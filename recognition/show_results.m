@@ -72,16 +72,17 @@ function [accuracy_kcc, accuracy_dtw] = show_results(filename)
     accuracy_dtw = trace(sum_blocks(fusion_matrix_dtw, 5, 5))/sum(fusion_matrix_dtw(:));
     
     if nargin < 1
-        fprintf('accuracy kcc: %f; dtw: %f', accuracy_kcc, accuracy_dtw);
+        fprintf('accuracy kcc: %f; dtw: %f\n', accuracy_kcc, accuracy_dtw);
     end
     
     table_comparison = ...
     [diag(sum_blocks(fusion_matrix_kcc, 5, 5)./200)*100,...
      diag(sum_blocks(fusion_matrix_dtw, 5, 5)./200)*100, results.time_use/65/65*1000*1000];
     
-    table_comparison = [table_comparison; mean(table_comparison)]
+    table_comparison = [table_comparison; mean(table_comparison)];
     
     matrix2latex(table_comparison, 'comparison_results.txt');
+%     disp('Saved results table to Latex codes into comarison_results.txt')
 
     function out = sum_blocks(A, block_nrows, block_ncols)
         out = squeeze(sum(reshape(sum(reshape(A,block_nrows,[])),...

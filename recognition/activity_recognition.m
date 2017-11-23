@@ -6,8 +6,9 @@ function results = activity_recognition(lambda, sigma)
         lambda = 0.0015;
         sigma = 1;
     end
-
-    sequence = 76:125;
+    
+    disp('running recognition...')
+    sequence = 76:125; % remove first 75 unstable points, cannot be larger, or Index exceeds matrix dimensions
     time_kcc = zeros(13,1);
     time_dtw = zeros(13,1);
 
@@ -37,7 +38,6 @@ function results = activity_recognition(lambda, sigma)
                         time_kcc(activity_test) = time_kcc(activity_test) + toc;
 
                         tic
-%                         distance(subject, 5*(activity-1)+ samples, 5*(activity_test-1)+ samples_test) = 0;
                         distance(subject, 5*(activity-1)+ samples, 5*(activity_test-1)+ samples_test) = dtw(train', test');
                         time_dtw(activity_test) = time_dtw(activity_test) + toc;
                     end
@@ -49,9 +49,10 @@ function results = activity_recognition(lambda, sigma)
     time_use = [time_kcc, time_dtw];
     filename = 'results.mat';
     save(filename, 'response', 'distance', 'time_use');
-    [accuracy_kcc, accuracy_dtw] = show_results(filename);
-    results = [accuracy_dtw, accuracy_kcc, time_dtw, time_kcc, sigma, lambda];
-    fprintf('accuracy_dtw: %f; accuracy_kcc: %f; time_dtw: %f, time_kcc: %f; sigma: %f lambda: %f\n', ...
+    disp('Saved results to results.mat')
+    [accuracy_kcc, accuracy_dtw] = show_results();
+    results = [accuracy_dtw, accuracy_kcc, sum(time_dtw), sum(time_kcc), sigma, lambda];
+    fprintf('accuracy_dtw: %f; accuracy_kcc: %f; time_dtw: %f s, time_kcc: %f s; sigma: %f lambda: %f\n', ...
         results(1),  results(2), results(3), results(4), results(5), results(6));
-
+    disp('Done.')
 end
