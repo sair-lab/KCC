@@ -19,7 +19,7 @@ You may find instructions to run the codes for human activity recognition using 
 
 If you find this repo is useful for your projects, you may cite it as:
     
-    @inproceedings{wang2017kernel,
+    @inproceedings{wang2018kernel,
       title={{Kernel Cross-Correlator}},
       author={Wang, Chen and Zhang, Le and Xie, Lihua and Yuan, Junsong},
       booktitle={AAAI},
