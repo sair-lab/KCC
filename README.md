@@ -22,13 +22,14 @@ If you find this repo is useful for your projects, you may cite it as:
     @inproceedings{wang2018kernel,
       title={{Kernel Cross-Correlator}},
       author={Wang, Chen and Zhang, Le and Xie, Lihua and Yuan, Junsong},
-      booktitle={AAAI},
-      year={2018}
+      booktitle={AAAI Conference on Artificial Intelligence (AAAI-18)},
+      year={2018},
+      mon=feb
      }
 
 # Works or papers using KCC:
 
-[Chen Wang](https://wang-chen.github.io) *, Tete Ji *, Thien-Minh Nguyen, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Correlation Flow: Robust Optical Flow Using Kernel Cross-Correlators", accepted by IEEE International Conference on Robotics and Automation (ICRA 2018), 2018. ([Codes available here](https://github.com/wang-chen/correlation_flow))
+[Chen Wang](https://wang-chen.github.io) *, Tete Ji *, Thien-Minh Nguyen, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Correlation Flow: Robust Optical Flow Using Kernel Cross-Correlators", accepted by IEEE International Conference on Robotics and Automation (ICRA 2018), 2018. ([Codes available here](https://github.com/wang-chen/correlation_flow))([PDF available here](https://arxiv.org/pdf/1802.07078.pdf))
 
 
 Thien-Minh Nguyen, Abdul Hanif Zaini, [Chen Wang](https://wang-chen.github.io) , Kexin Guo, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Robust Target-relative Localization with Ultra-Wideband Ranging and Communication", accepted by IEEE International Conference on Robotics and Automation (ICRA 2018), 2018. ([Video available here](https://youtu.be/ZkxFDGdB0hQ))
