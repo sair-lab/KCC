@@ -1,25 +1,7 @@
-%     KCC: Kernel Cross-Correlator
-%     Visual Tracking Using KCC
-%
-%     Copyright (C) 2017 
-%     Author: Wang Chen wang.chen@zoho.com Nanyang Technological University
-%             Zhang Le zhang.le@adsc.com Advanced Digital Sciences Center
-%     This program is free software: you can redistribute it and/or modify
-%     it under the terms of the GNU General Public License as published by
-%     the Free Software Foundation, either version 3 of the License, or
-%     (at your option) any later version.
-%     This program is distributed in the hope that it will be useful,
-%     but WITHOUT ANY WARRANTY; without even the implied warranty of
-%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-%     GNU General Public License for more details.
-%     You should have received a copy of the GNU General Public License
-%     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resize_factor)
 %TRACKERMAIN contains the main loop of the tracker, P contains all the parameters set in runTracker
     %% INITIALIZATION
-   num_frames = numel(p.img_files);
+    num_frames = numel(p.img_files);
     % used for OTB-13 benchmark
     OTB_rect_positions = zeros(num_frames, 4);
 	pos = p.init_pos;
@@ -49,18 +31,11 @@ function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resi
         base_target_sz = target_sz;
         scale_sigma = sqrt(p.num_scales) * p.scale_sigma_factor;
         ss = (1:p.num_scales) - ceil(p.num_scales/2);
+        ys = exp(-0.5 * (ss.^2) / scale_sigma^2);
         
-        rotation_factor = 0;
-        ys=zeros(size(ss));
+        ys=zeros(size(ys));
         ys(1)=1;
-        ysf = (fft(ys));
-        
-        yr = zeros(p.num_rotation,1);
-        yr(1) = 1;
-        yrf = fft(yr);
-        rotation_factors = p.rotation_step*(-floor(p.num_rotation/2):floor(p.num_rotation/2));
-
-
+        ysf = ((fft(ys)));
         if mod(p.num_scales,2) == 0
             scale_window = single(hann(p.num_scales+1));
             scale_window = scale_window(2:end);
@@ -137,14 +112,15 @@ function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resi
 
             %% SCALE SPACE SEARCH
             if p.scale_adaptation
-                current_patch = getScalePatch(im, pos, base_target_sz,  scale_factor, -rotation_factor, scale_model_sz, p.hog_scale_cell_size);
+                current_patch = getScalePatch(im, pos, base_target_sz,  scale_factor, scale_window, scale_model_sz, p.hog_scale_cell_size);
                 ksf = gaussian_correlation_scale_single(im_patch_scale, current_patch, p.scale_sigma);                    
-                scale_response = abs(ifft((model_hsf.*ksf)));
+                scale_response = abs(ifft((model_hf.*ksf)));
                 [max_value, recovered_scale] = max(scale_response(:));
                 
                 %set the scale
                 scale_factor = scale_factor / scale_factors(recovered_scale);
-
+%                 fprintf('frame %d: recovered scale is %.2f:, current sclae factor is %.2f:\n', frame,recovered_scale,scale_factor)
+               
                 if scale_factor < min_scale_factor
                     scale_factor = min_scale_factor;
                 elseif scale_factor > max_scale_factor
@@ -163,25 +139,6 @@ function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resi
                 % Compute the rectangle with (or close to) params.fixed_area and
                 % same aspect ratio as the target bboxgetScaleSubwindow_v1
                 area_resize_factor = sqrt(p.fixed_area/prod(bg_area));
-            end
-            
-            %% ROTATION SPACE SEARCH
-            if p.rotation_adaptation
-                current_rotation_patch = getRotationPatch(im, pos, base_target_sz,  scale_factor, -rotation_factor, p.hog_scale_cell_size);
-                krf = gaussian_correlation_scale_single(im_patch_rotation, current_rotation_patch, p.rotation_sigma);                    
-                rotation_response = abs(ifft((model_hrf.*krf)));
-                [max_value, recovered_rotation] = max(rotation_response(:));
-                
-                %set the scale
-                rotation_factor = rotation_factor + rotation_factors(recovered_rotation);
-                fprintf('frame %d: current sclae factor is %.4f; current rotation %.4f:\n', frame, scale_factor, rotation_factor)
-                
-                
-                if rotation_factor <= -180
-                    rotation_factor = rotation_factor + 360;
-                elseif rotation_factor > 180
-                    rotation_factor = rotation_factor - 360;
-                end
             end
 
             if p.visualization_dbg==1
@@ -218,14 +175,14 @@ function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resi
         	hf_den = (1 - p.learning_rate_cf) * hf_den + p.learning_rate_cf * new_hf_den;
 	   	 	hf_num = (1 - p.learning_rate_cf) * hf_num + p.learning_rate_cf * new_hf_num;
 
-            % BG/FG MODEL UPDATE
+            %% BG/FG MODEL UPDATE
             % patch of the target + padding
             [bg_hist, fg_hist] = updateHistModel(new_pwp_model, im_patch_bg, bg_area, fg_area, target_sz, p.norm_bg_area, p.n_bins, p.grayscale_sequence, bg_hist, fg_hist, p.learning_rate_pwp);
         end
 
         %% SCALE UPDATE
         if p.scale_adaptation
-            im_patch_scale_frame = getScaleSubwindow_v1(im, pos, base_target_sz, scale_factors*scale_factor, -rotation_factor, scale_model_sz, p.hog_scale_cell_size);
+            im_patch_scale_frame = getScaleSubwindow_v1(im, pos, base_target_sz, scale_factors*scale_factor, scale_window, scale_model_sz, p.hog_scale_cell_size);
 
             if frame == 1
                 im_patch_scale=im_patch_scale_frame;
@@ -234,24 +191,10 @@ function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resi
             end
             
             ksf = gaussian_correlation_scale_single(im_patch_scale, im_patch_scale(:,uint8(size(im_patch_scale,2)/2)), p.scale_sigma);
-            model_hsf = ysf'./(ksf+0.1);
-        end
-        
-                %% ROTATION UPDATE
-        if p.rotation_adaptation
-            im_patch_rotation_frame = getRotationSubwindow(im, pos, base_target_sz, scale_factor, rotation_factor + rotation_factors, p.hog_scale_cell_size);
-
-            if frame == 1
-                im_patch_rotation=im_patch_rotation_frame;
-            else
-                im_patch_rotation=(1 - p.learning_rate_scale)*im_patch_rotation + p.learning_rate_scale*im_patch_rotation_frame;
-            end
-            
-            krf = gaussian_correlation_scale_single(im_patch_rotation, im_patch_rotation(:,uint8(size(im_patch_rotation,2)/2)), p.rotation_sigma);
-            model_hrf = yrf./(krf+0.1);
+            model_hf = ysf'./(ksf+0.1);
         end
 
-        %% update bbox position
+        % update bbox position
         if frame==1, rect_position = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])]; end
 
         rect_position_padded = [pos([2,1]) - bg_area([2,1])/2, bg_area([2,1])];
