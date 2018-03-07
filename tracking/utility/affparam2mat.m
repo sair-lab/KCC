@@ -3,7 +3,10 @@ function q = affparam2mat(p)
 %
 % The functions affparam2geom and affparam2mat convert a 'geometric'
 % affine parameter to/from a matrix form (2x3 matrix).
-% 
+%
+%   输入  ： q，具有几何意义的参数；
+%   输出  ： p，原始参数矩阵；
+%
 % affparam2geom converts a 2x3 matrix to 6 affine parameters
 % (x, y, th, scale, aspect, skew), and affparam2mat does the inverse.
 %
