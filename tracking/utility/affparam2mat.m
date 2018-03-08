@@ -1,20 +1,4 @@
 function q = affparam2mat(p)
-% function q = affparam2mat(p)
-%
-% The functions affparam2geom and affparam2mat convert a 'geometric'
-% affine parameter to/from a matrix form (2x3 matrix).
-%
-%   输入  ： q，具有几何意义的参数；
-%   输出  ： p，原始参数矩阵；
-%
-% affparam2geom converts a 2x3 matrix to 6 affine parameters
-% (x, y, th, scale, aspect, skew), and affparam2mat does the inverse.
-%
-%    p(6,n) : [dx dy sc th sr phi]'
-%    q(6,n) : [q(1) q(3) q(4); q(2) q(5) q(6)]
-%
-% Reference "Multiple View Geometry in Computer Vision" by Richard
-% Hartley and Andrew Zisserman. 
 
 % Copyright (C) Jongwoo Lim and David Ross.  All rights reserved.
 

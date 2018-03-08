@@ -1,5 +1,26 @@
 function [results] = trackerMain_otb_wangchen(p, im, bg_area, fg_area, area_resize_factor)
-%TRACKERMAIN contains the main loop of the tracker, P contains all the parameters set in runTracker
+%     KCC: Kernel Cross-Correlator
+%     Visual Tracking Using KCC
+%
+%     Copyright (C) 2017 
+%     Author: Wang Chen wang.chen@zoho.com Nanyang Technological University
+%             Zhang Le zhang.le@adsc.com Advanced Digital Sciences Center
+%
+%     This file is part of KCC.
+% 
+%     KCC is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+% 
+%     KCC is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+% 
+%     You should have received a copy of the GNU General Public License
+%     along with KCC.  If not, see <http://www.gnu.org/licenses/>.
+
     %% INITIALIZATION
     num_frames = numel(p.img_files);
     % used for OTB-13 benchmark

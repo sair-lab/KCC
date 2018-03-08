@@ -15,7 +15,7 @@ else
   [w,h] = deal(varargin{1:2});
   varargin(1:2) = [];
 end
-%%***********获得宽，高***********%%
+
 
 if (length(varargin) < 1 || any(length(varargin{1}) ~= 6))
   M = [0,1,0; 0,0,1];
@@ -27,12 +27,12 @@ else
   else
     varargin(1) = [];
   end
-  M = [p(1) p(3) p(4); p(2) p(5) p(6)];     %%affine变换参数
+  M = [p(1) p(3) p(4); p(2) p(5) p(6)];
 end
 
 %----------------------------------------------------------
 % Draw the box.
 %----------------------------------------------------------
 corners = [ 1,-w/2,-h/2; 1,w/2,-h/2; 1,w/2,h/2; 1,-w/2,h/2; 1,-w/2,-h/2 ]';
-corners = M * corners;                  %%顶点
-center = mean(corners(:,1:4),2);        %%中心
+corners = M * corners;
+center = mean(corners(:,1:4),2);

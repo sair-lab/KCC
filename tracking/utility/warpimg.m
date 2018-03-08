@@ -1,11 +1,4 @@
 function wimg = warpimg(img, p, sz)
-% function wimg = warpimg(img, p, sz)
-%
-%    img(h,w)   :   原始图像
-%    p(6,n)     :   仿射参数    mat format
-%    sz(th,tw)  ：  提取块大小
-%
-
 %% Copyright (C) 2005 Jongwoo Lim and David Ross.
 %% All rights reserved.
 
@@ -20,9 +13,9 @@ w = sz(2);  h = sz(1);  n = size(p,2);
 pos = reshape(cat(2, ones(h*w,1),x(:),y(:)) ...
               * [p(1,:) p(2,:); p(3:4,:) p(5:6,:)], [h,w,n,2]);
 wimg = squeeze(interp2(img, pos(:,:,:,1), pos(:,:,:,2)));
-                                %%pos(:,:,:,1)    :   x坐标矩阵
-                                %%pos(:,:,:,2)    ：  y坐标矩阵
-wimg(find(isnan(wimg))) = 0;    %%去掉个别坏点
+
+
+wimg(find(isnan(wimg))) = 0;
 
 %   B = SQUEEZE(A) returns an array B with the same elements as
 %   A but with all the singleton dimensions removed.  A singleton
