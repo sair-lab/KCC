@@ -29,9 +29,9 @@ If you find this repo is useful for your projects, you may cite it as:
 
 # Works or papers using KCC:
 
-[Chen Wang](https://wang-chen.github.io) *, Tete Ji *, Thien-Minh Nguyen, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Correlation Flow: Robust Optical Flow Using Kernel Cross-Correlators", accepted by IEEE International Conference on Robotics and Automation (ICRA 2018), 2018. ([Codes available here](https://github.com/wang-chen/correlation_flow))([PDF available here](https://arxiv.org/pdf/1802.07078.pdf))
+[Chen Wang](https://wang-chen.github.io) *, Tete Ji *, Thien-Minh Nguyen, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Correlation Flow: Robust Optical Flow Using Kernel Cross-Correlators", IEEE International Conference on Robotics and Automation (ICRA), May. 2018. ([Codes available here](https://github.com/wang-chen/correlation_flow))([PDF available here](https://arxiv.org/pdf/1802.07078.pdf))
 
 
-Thien-Minh Nguyen, Abdul Hanif Zaini, [Chen Wang](https://wang-chen.github.io) , Kexin Guo, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Robust Target-relative Localization with Ultra-Wideband Ranging and Communication", accepted by IEEE International Conference on Robotics and Automation (ICRA 2018), 2018. ([Video available here](https://youtu.be/ZkxFDGdB0hQ))
+Thien-Minh Nguyen, Abdul Hanif Zaini, [Chen Wang](https://wang-chen.github.io) , Kexin Guo, and [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), "Robust Target-relative Localization with Ultra-Wideband Ranging and Communication", IEEE International Conference on Robotics and Automation (ICRA), May. 2018. ([Video available here](https://youtu.be/ZkxFDGdB0hQ))
 
-[Chen Wang](https://wang-chen.github.io), [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), and [Junsong Yuan](http://www.ntu.edu.sg/home/jsyuan/), "Non-Iterative Localization and Dense Mapping", arXiv preprint arXiv:1710.05502, 2017. ([PDF available here](https://arxiv.org/pdf/1710.05502.pdf))
+[Chen Wang](https://wang-chen.github.io), Minh-Chung Hoang, [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), and [Junsong Yuan](http://www.ntu.edu.sg/home/jsyuan/), "Non-Iterative RGB-D-inertial Odometry", arXiv preprint arXiv:1710.05502, 2017. ([PDF available here](https://arxiv.org/pdf/1710.05502.pdf))
