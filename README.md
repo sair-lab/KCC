@@ -1,6 +1,6 @@
 # Kernel Cross-Correlator (KCC)
 
-This repo contains source codes for the following paper, which is accepted by AAAI-18:
+This repo contains source codes for the following paper [(PDF available here)](https://arxiv.org/pdf/1709.05936.pdf), which is accepted by AAAI-18:
 
 [Chen Wang](http://wangchen.online), [Le Zhang](https://sites.google.com/site/zhangleuestc/home), [Lihua Xie](http://www.ntu.edu.sg/home/elhxie/), [Junsong Yuan](http://www.ntu.edu.sg/home/jsyuan/), Kernel Cross-Correlator, In AAAI Conference on Artificial Intelligence (AAAI-18), Feb. 2018
 
